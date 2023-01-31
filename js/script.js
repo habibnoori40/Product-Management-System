@@ -70,7 +70,7 @@ function createData() {
   }
 
   submit.innerHTML = "Create";
-  quantity.placeholder = "Count";
+  quantity.placeholder = "Quantity";
   quantity.disabled = false;
 
   localStorage.setItem("product", JSON.stringify(productData))
@@ -159,7 +159,7 @@ function UpdateProduct(index) {
     top: 0,
     behavior: "smooth",
   });
-  openInputsField()
+ addProductBtn()
 }
 
 // Get Search Mood
