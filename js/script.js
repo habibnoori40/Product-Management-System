@@ -159,6 +159,7 @@ function UpdateProduct(index) {
     top: 0,
     behavior: "smooth",
   });
+  openInputsField()
 }
 
 // Get Search Mood
