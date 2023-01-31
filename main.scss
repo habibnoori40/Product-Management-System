@@ -1,0 +1,287 @@
+@use "./helpers/variable" as *;
+@use "./helpers/mixins" as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --transition: 0.3s;
+}
+
+body {
+  font-family: sans-serif;
+  background-image: radial-gradient(circle at 0% 50%, $primary-color 42%, $primary-sec-color 42%);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  @include flexbox(center, center);
+}
+
+.app {
+  width: 90%;
+  background-color: $white-bg-c;
+  margin: 30px auto;
+  padding: 10px 0px 0px 20px;
+  border-radius: 5px;
+
+  .head {
+    @include flexbox(space-between, center);
+    padding-right: 20px;
+    margin-bottom: 20px;
+
+    h3 {
+      color: $header-etc-c;
+      font-size: 16px;
+    }
+
+    .search-component {
+      @include flexbox(flex-start, center);
+      flex-basis: 68%;
+      gap: 10px;
+
+      button {
+        width: 30%;
+        padding: 0px 10px;
+      }
+    }
+  }
+
+  >.wrapper {
+    @include flexbox(space-between, stretch);
+    gap: 20px;
+
+    .add-product {
+      display: none;
+    }
+
+    .inputs {
+      flex-basis: 25%;
+    }
+
+    .outputs {
+      flex-basis: 75%;
+      background-color: $offwhite-c;
+      padding: 30px 15px 15px;
+      border-radius: 5px 0px 0px 0px;
+
+      .table-container {
+        background-color: $white-bg-c;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 20%);
+      }
+    }
+
+  }
+
+  input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid $input-border-c;
+    outline: none;
+    margin: 5px 0;
+    padding: 0 10px;
+    border-radius: 3px;
+    color: $secondary-etc-c;
+    transition: var(--transition);
+
+    &:focus {
+      box-shadow: 0px 2px 0px 0px $primary-sec-color;
+    }
+
+    &:not(:disabled)::placeholder {
+      color: $input-placeholder-c;
+    }
+  }
+
+  .price {
+    input {
+      width: 30%;
+    }
+
+    .total {
+      width: fit-content;
+      background-color: $total-price-c;
+      color: $primary-text-c;
+      padding: 6px;
+      border-radius: 3px;
+      transition: 0.3s;
+
+      &.active {
+        background-color: $primary-sec-color;
+      }
+
+      &::before {
+        content: "Total: ";
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: $header-etc-c;
+    color: $primary-text-c;
+    transition: var(--transition);
+
+    &:hover {
+      background-color: $secondary-etc-c;
+    }
+
+    &.submit-btn {
+      margin: 10px 0 20px;
+    }
+
+    &.update {
+      height: 35px;
+    }
+
+    &.delete {
+      @extend .update;
+    }
+  }
+
+  .deleteall {
+    width: 20%;
+    margin: auto;
+
+    button {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+    border-collapse: collapse;
+    font-size: 15px;
+
+    tr:not(:last-of-type) {
+      border-bottom: 2px solid #eee;
+    }
+
+    th {
+      padding: 5px;
+      color: $header-etc-c;
+    }
+
+    td {
+      padding: 10px 5px;
+      color: $secondary-etc-c;
+    }
+  }
+
+  // Any Number TYpe Input
+  input[type='number']::-webkit-inner-spin-button {
+    appearance: none;
+  }
+}
+
+
+
+// Media Querys
+@include mediaQuery() {
+  .app {
+    padding-left: 10px;
+
+    .head {
+      padding-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .wrapper {
+      display: block;
+      position: relative;
+
+      .add-product {
+        display: block;
+        width: fit-content;
+        padding: 10px;
+        border-bottom-left-radius: 0;
+      }
+
+
+      .inputs {
+        position: absolute;
+        background-color: white;
+        padding: 10px;
+        top: 60px;
+        left: -15px;
+        width: 250px;
+        box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 20%);
+        border-radius: 5px;
+        transform: scale(0);
+        opacity: 0;
+        transition: var(--transition);
+
+        &.open {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .outputs {
+        border-radius: initial;
+        padding: 25px 8px 10px;
+      }
+    }
+  }
+}
+
+@include mediaQuery-small() {
+  .app {
+    .head {
+      display: block;
+
+      h3 {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .search-component {
+        display: block;
+
+        button {
+          width: 49%;
+          padding: 0 5px;
+        }
+      }
+    }
+
+    button {
+      font-size: 12px;
+    }
+
+    .deleteall button {
+      padding: 0 5px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        height: 9px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $primary-sec-color;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 99px;
+        background-color: $header-etc-c;
+      }
+
+      table {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management System</title>
+    <!-- Css Stylesheet -->
+    <link rel="stylesheet" href="./main.css">
+    <!-- Script -->
+    <script src="./js/script.js" defer type="text/javascript"></script>
+  </head>
+
+  <body>
+    <main class="app">
+      <div class="head">
+        <h3>Product <small style="font-size: 10px;">Developed By Habib</small> <br>Management System</h3>
+
+        <div class="search-component">
+          <input type="text" oninput="searchProduct(this.value)" placeholder="Search" id="search">
+          <button onclick="getSearch(this.id)" id="searchTitle">Search By Title</button>
+          <button onclick="getSearch(this.id)" id="searchCategory">Search By Category</button>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <button class="add-product" id="add-product">Add Product</button>
+        <section class="inputs">
+          <input type="text" title="Title" id="title" placeholder="Title">
+          <div class="price">
+            <input type="number" title="Price" onkeyup="getTotal()" id="price" placeholder="Price">
+            <input type="number" title="Taxes" onkeyup="getTotal()" id="taxes" placeholder="Taxes">
+            <input type="number" title="Ads" onkeyup="getTotal()" id="ads" placeholder="Ads">
+            <input type="number" title="Discount" onkeyup="getTotal()" id="discount" placeholder="Discount">
+            <span class="total-price">
+              <span id="total" class="total"></span>
+            </span>
+          </div>
+          <input type="number" title="Quantity" id="count" placeholder="Quantity">
+          <input type="text" title="Category" id="category" placeholder="Category">
+          <button id="submit-btn" class="submit-btn">Create</button>
+        </section>
+        <section class="outputs">
+          <div class="table-container">
+            <div class="deleteall" id="deleteall"></div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Title</th>
+                  <th>Price</th>
+                  <th>Taxes</th>
+                  <th>Ads</th>
+                  <th>Discount</th>
+                  <th>Total</th>
+                  <th>Category</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+
+</html>
