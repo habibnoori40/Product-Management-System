@@ -18,14 +18,13 @@
         <h3>Product <small style="font-size: 10px;">Developed By Habib</small> <br>Management System</h3>
 
         <div class="search-component">
-          <input type="text" oninput="searchProduct(this.value)" placeholder="Search" id="search">
+          <input type="text" autocomplete="off" oninput="searchProduct(this.value)" placeholder="Search" id="search">
           <button onclick="getSearch(this.id)" id="searchTitle">Search By Title</button>
           <button onclick="getSearch(this.id)" id="searchCategory">Search By Category</button>
         </div>
       </div>
 
       <div class="wrapper">
-        <button class="add-product" id="add-product">Add Product</button>
         <section class="inputs">
           <input type="text" title="Title" id="title" placeholder="Title">
           <div class="price">
