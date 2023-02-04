@@ -184,8 +184,6 @@ body {
   }
 }
 
-
-
 // Media Querys
 @include mediaQuery() {
   .app {
@@ -198,37 +196,12 @@ body {
 
     .wrapper {
       display: block;
-      position: relative;
-
-      .add-product {
-        display: block;
-        width: fit-content;
-        padding: 10px;
-        border-bottom-left-radius: 0;
-      }
-
 
       .inputs {
-        position: absolute;
-        background-color: white;
-        padding: 10px;
-        top: 60px;
-        left: -15px;
-        width: 250px;
-        box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 20%);
-        border-radius: 5px;
-        transform: scale(0);
-        opacity: 0;
-        transition: var(--transition);
-
-        &.open {
-          transform: scale(1);
-          opacity: 1;
-        }
+        padding-right: 10px;
       }
 
       .outputs {
-        border-radius: initial;
         padding: 25px 8px 10px;
       }
     }
@@ -237,6 +210,9 @@ body {
 
 @include mediaQuery-small() {
   .app {
+    width: 94%;
+    margin: 15px auto;
+
     .head {
       display: block;
 
