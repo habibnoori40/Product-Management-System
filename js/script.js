@@ -15,7 +15,7 @@ let submitBtn_mood = "create";
 let searchMood = "Title"
 let productIndex;
 
-// Get The Total Price After The Calculation And 
+// Get The Total Price After The Calculation 
 function getTotal() {
   if (price.value) {
     let result = (+price.value + +taxes.value + +ads.value) - +discount.value;
@@ -77,7 +77,6 @@ function createData() {
 
   clearData();
   ShowData();
-  openInputsField()
 }
 
 // Clear User Inputs Data
@@ -110,19 +109,19 @@ function ShowData() {
 
 function createElements(index) {
   return `
-              <tr>
-                <td>${index + 1}</td>
-                <td>${productData[index].title}</td>
-                <td>${productData[index].price}</td>
-                <td>${productData[index].taxes}</td>
-                <td>${productData[index].ads}</td>
-                <td>${productData[index].discount}</td>
-                <td>${productData[index].total}</td>
-                <td>${productData[index].category}</td>
-                <td><button onclick="UpdateProduct(${index})" id="update" class="update">Update</button></td>
-                <td><button onclick="deleteProduct(${index})" id="delete" class="delete">Delete</button></td>
-              </tr>
-`;
+                <tr>
+                  <td>${index + 1}</td>
+                  <td>${productData[index].title}</td>
+                  <td>${productData[index].price}</td>
+                  <td>${productData[index].taxes}</td>
+                  <td>${productData[index].ads}</td>
+                  <td>${productData[index].discount}</td>
+                  <td>${productData[index].total}</td>
+                  <td>${productData[index].category}</td>
+                  <td><button onclick="UpdateProduct(${index})" id="update" class="update">Update</button></td>
+                  <td><button onclick="deleteProduct(${index})" id="delete" class="delete">Delete</button></td>
+                </tr>
+  `;
 }
 
 ShowData();
@@ -159,7 +158,6 @@ function UpdateProduct(index) {
     top: 0,
     behavior: "smooth",
   });
- addProductBtn()
 }
 
 // Get Search Mood
@@ -189,18 +187,3 @@ function searchProduct(value) {
   }
   tbody.innerHTML = table
 };
-
-// Get Add Product Button For Small Screen Sizes And Add Click Event For It And Call Fn To Open The Inputs
-function addProductBtn() {
-  let addProductBtn = document.getElementById("add-product")
-  addProductBtn.onclick = function () {
-    openInputsField()
-  }
-}
-// Get Inputs Container And Attach Toggle Class For It, To Opem And Close Inputs Whenever You Click On Add Product Button
-function openInputsField() {
-  let inputsContainer = document.getElementsByClassName("inputs")[0]
-  inputsContainer.classList.toggle("open")
-}
-
-addProductBtn()
